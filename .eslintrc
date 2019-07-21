@@ -3,5 +3,9 @@
     "plugin:shopify/typescript",
     "plugin:shopify/node",
     "plugin:shopify/prettier"
-  ]
+  ],
+  "rules": {
+    "babel/object-curly-spacing": 0,
+    "eslint-comments/no-unlimited-disable": 0
+  }
 }

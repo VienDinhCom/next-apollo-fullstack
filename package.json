@@ -9,7 +9,10 @@
     "dev": "nodemon",
     "lint": "eslint --ext .js,.ts --fix src"
   },
-  "dependencies": {},
+  "dependencies": {
+    "apollo-server": "^2.7.0",
+    "graphql": "^14.4.2"
+  },
   "devDependencies": {
     "@types/node": "^12.6.8",
     "eslint": "^5.16.0",
