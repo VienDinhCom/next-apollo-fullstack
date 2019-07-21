@@ -1,0 +1,23 @@
+{
+  "name": "typescript-node-boilerplate",
+  "description": "A starting point for Node.js apps with TypeScript",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "dev": "nodemon",
+    "lint": "eslint --ext .js,.ts --fix src"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^12.6.8",
+    "eslint": "^5.16.0",
+    "eslint-plugin-shopify": "^29.0.2",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "~3.1.1"
+  }
+}
