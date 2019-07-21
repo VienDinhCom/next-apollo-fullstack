@@ -1,0 +1,4 @@
+# import Author from 'Author/Author.graphql'
+# import Post from 'Post/Post.graphql'
+# import Query from 'Query/Query.graphql'
+# import Mutation from 'Mutation/Mutation.graphql'

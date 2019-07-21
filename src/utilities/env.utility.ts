@@ -1,9 +1,9 @@
 const { NODE_ENV } = process.env;
 
-function isDev() {
+export function isDev() {
   return NODE_ENV !== 'production';
 }
 
-function isProd() {
+export function isProd() {
   return NODE_ENV === 'production';
 }

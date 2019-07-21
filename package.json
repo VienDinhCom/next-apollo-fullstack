@@ -13,11 +13,16 @@
     "apollo-server": "^2.7.0",
     "dotenv": "^8.0.0",
     "graphql": "^14.4.2",
-    "jsonwebtoken": "^8.5.1"
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.2.7"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/jsonwebtoken": "^8.3.2",
+    "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.8",
     "eslint": "^5.16.0",
     "eslint-plugin-shopify": "^29.0.2",
