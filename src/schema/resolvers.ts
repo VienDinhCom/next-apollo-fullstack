@@ -1,5 +1,7 @@
-import { Author } from './Author/Author.resolver';
+import * as Author from './author/author.resolver';
+import * as Query from './query/query.resolver';
 
-const resolvers = { Author };
-
-export default resolvers;
+export const resolvers = {
+  Author,
+  Query
+};

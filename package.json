@@ -7,9 +7,11 @@
     "start": "node dist/main.js",
     "build": "tsc",
     "dev": "nodemon",
-    "lint": "eslint --ext .js,.ts --fix src"
+    "lint": "eslint --ext .js,.ts --fix src",
+    "codegen": "graphql-codegen --config graphql.config.json"
   },
   "dependencies": {
+    "apollo-datasource": "^0.6.0",
     "apollo-server": "^2.7.0",
     "dotenv": "^8.0.0",
     "graphql": "^14.4.2",
@@ -20,9 +22,13 @@
     "mongodb": "^3.2.7"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.4.0",
+    "@graphql-codegen/typescript": "^1.4.0",
+    "@graphql-codegen/typescript-operations": "^1.4.0",
     "@types/dotenv": "^6.1.1",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/lodash": "^4.14.136",
+    "@types/mongodb": "^3.1.28",
     "@types/node": "^12.6.8",
     "eslint": "^5.16.0",
     "eslint-plugin-shopify": "^29.0.2",
