@@ -1,5 +1,4 @@
 export type Maybe<T> = T | null;
-
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -14,7 +13,6 @@ export type Author = {
   id: Scalars['Int'];
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
-
   /** the list of Posts by this author */
   posts?: Maybe<Array<Maybe<Post>>>;
 };
