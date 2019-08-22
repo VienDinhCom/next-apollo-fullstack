@@ -6,8 +6,7 @@ import '~/backend/models';
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources,
-  playground: true
+  dataSources
   // context: ({ req }) => {
   //   const token = req.headers.authorization || '';
   //   const user = utilities.auth.getUser(token);
