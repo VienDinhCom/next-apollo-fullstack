@@ -1,7 +1,7 @@
+import '~/backend/models';
 import { ApolloServer } from 'apollo-server-micro';
 import { typeDefs, resolvers } from '~/backend/schema';
 import { dataSources } from './services';
-import '~/backend/models';
 
 export const server = new ApolloServer({
   typeDefs,

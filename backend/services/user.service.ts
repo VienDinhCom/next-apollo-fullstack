@@ -1,24 +1,24 @@
 import { DataSource } from 'apollo-datasource';
 import { getRepository } from 'typeorm';
-import { User } from '~/backend/models';
-import { User as UserType, UserInput } from '~/backend/types/graphql';
+import { User as UserModel } from '~/backend/models';
+import { User, UserInput } from '~/backend/types/graphql';
 
 export class UserService extends DataSource {
-  createUser(input: UserInput): Promise<UserType> {
-    const user = new User();
-    return getRepository(User).save({ ...user, ...input });
+  createUser(input: UserInput): Promise<User> {
+    const user = new UserModel();
+    return getRepository(UserModel).save({ ...user, ...input });
   }
 
-  async updateUser(id: string, input: UserInput): Promise<UserType> {
-    const user = await getRepository(User).findOne(id);
-    return getRepository(User).save({ ...user, ...input });
+  async updateUser(id: string, input: UserInput): Promise<User> {
+    const user = await getRepository(UserModel).findOne(id);
+    return getRepository(UserModel).save({ ...user, ...input });
   }
 
-  user(id: string): Promise<UserType> {
-    return getRepository(User).findOne(id);
+  user(id: string): Promise<User> {
+    return getRepository(UserModel).findOne(id);
   }
 
-  users(): Promise<UserType[]> {
-    return getRepository(User).find();
+  users(): Promise<User[]> {
+    return getRepository(UserModel).find();
   }
 }
