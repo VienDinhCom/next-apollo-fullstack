@@ -1,7 +1,4 @@
 {
-  "extends": [
-    "plugin:shopify/typescript",
-    "plugin:shopify/node",
-    "plugin:shopify/prettier"
-  ]
+  "extends": ["react-app", "plugin:css-modules/recommended", "plugin:prettier/recommended"],
+  "plugins": ["css-modules"]
 }

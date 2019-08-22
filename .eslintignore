@@ -1,2 +1,5 @@
-/dist
-/node_modules
+.next
+node_modules
+
+backend/types/graphql.ts
+frontend/types/graphql.ts

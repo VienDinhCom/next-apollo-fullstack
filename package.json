@@ -1,22 +1,49 @@
 {
-  "name": "typescript-node-boilerplate",
-  "description": "A starting point for Node.js apps with TypeScript",
+  "name": "next-graphql",
   "version": "1.0.0",
+  "repository": "",
+  "author": "Vien Dinh <maxvien@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/main.js",
-    "build": "tsc",
-    "dev": "nodemon",
-    "lint": "eslint --ext .js,.ts --fix src"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "codegen": "nodemon",
+    "eslint": "eslint src",
+    "eslint-fix": "eslint src --fix",
+    "stylelint": "stylelint 'frontend/**/*.{css,scss}'",
+    "stylelint-fix": "stylelint 'frontend/**/*.{css,scss}' --fix"
   },
-  "dependencies": {},
+  "dependencies": {
+    "apollo-datasource": "^0.6.1",
+    "apollo-datasource-rest": "^0.6.1",
+    "apollo-modulizer": "^0.1.1",
+    "apollo-server-micro": "^2.8.1",
+    "dotenv": "^8.1.0",
+    "graphql": "^14.4.2",
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mysql": "^2.17.1",
+    "next": "^9.0.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.18"
+  },
   "devDependencies": {
-    "@types/node": "^12.6.8",
-    "eslint": "^5.16.0",
-    "eslint-plugin-shopify": "^29.0.2",
+    "@graphql-codegen/cli": "^1.6.1",
+    "@graphql-codegen/typescript": "^1.6.1",
+    "@graphql-codegen/typescript-operations": "^1.6.1",
+    "@graphql-codegen/typescript-resolvers": "^1.6.1",
+    "@types/dotenv": "^6.1.1",
+    "@types/lodash": "^4.14.137",
+    "@types/node": "^12.7.2",
+    "@types/react": "^16.9.2",
+    "babel-preset-next-extras": "^1.0.0",
+    "devtools-for-react": "^1.0.0",
     "nodemon": "^1.19.1",
-    "prettier": "^1.18.2",
-    "ts-node": "^8.3.0",
-    "typescript": "~3.1.1"
+    "typescript": "^3.5.3"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "overwrite": true,
+  "schema": {
+    "./backend/schema/**/*.ts": {
+      "noRequire": true
+    }
+  },
+  "generates": {
+    "backend/types/graphql.ts": {
+      "config": {
+        "contextType": "./context#Context",
+        "useIndexSignature": true
+      },
+      "plugins": ["typescript", "typescript-resolvers"]
+    },
+    "frontend/types/graphql.ts": {
+      "plugins": ["typescript", "typescript-operations"]
+    }
+  }
+}
