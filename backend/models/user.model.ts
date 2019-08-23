@@ -7,6 +7,9 @@ export class User implements UserType {
   @Generated('uuid')
   id: string;
 
+  @Column({ unique: true })
+  email: string;
+
   @Column()
-  name: string;
+  password: string;
 }

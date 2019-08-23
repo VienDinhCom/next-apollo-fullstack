@@ -5,22 +5,22 @@ import { UserResolvers, MutationResolvers, QueryResolvers } from '~/backend/type
 export const typeDef = gql`
   type User {
     id: ID!
-    name: String
-    posts: [Post]
+    email: String
+    password: String
+  }
+
+  type UserToken {
+    token: String
   }
 
   input UserInput {
-    name: String
+    email: String!
+    password: String!
   }
 
   extend type Mutation {
-    createUser(input: UserInput): User
-    updateUser(id: ID!, input: UserInput): User
-  }
-
-  extend type Query {
-    user(id: ID!): User
-    users: [User]
+    signUp(input: UserInput): UserToken
+    signIn(input: UserInput): UserToken
   }
 `;
 
@@ -31,27 +31,16 @@ interface Resolvers {
 }
 
 export const resolvers: Resolvers = {
-  User: {
-    posts: (parent, args, context, info) => {
-      return [{ id: '1', title: 'Test User Posts' }];
-    }
-  },
+  User: {},
   Mutation: {
-    createUser: (parent, args, context, info) => {
-      return context.dataSources.user.createUser(args.input);
+    signUp: (parent, args, { dataSources }, info) => {
+      return dataSources.user.signUp(args);
     },
-    updateUser: (parent, args, context, info) => {
-      return context.dataSources.user.updateUser(args.id, args.input);
+    signIn: (parent, args, { dataSources }, info) => {
+      return dataSources.user.signIn(args);
     }
   },
-  Query: {
-    user: (parent, args, context, info) => {
-      return context.dataSources.user.user(args.id);
-    },
-    users: (parent, args, context, info) => {
-      return context.dataSources.user.users();
-    }
-  }
+  Query: {}
 };
 
 export default createModule({ typeDef, resolvers });

@@ -1,24 +1,28 @@
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { DataSource } from 'apollo-datasource';
+import { utils } from '~/backend/utils';
 import { getRepository } from 'typeorm';
 import { User as UserModel } from '~/backend/models';
-import { User, UserInput } from '~/backend/types/graphql';
+import { UserToken, MutationSignUpArgs, MutationSignInArgs } from '~/backend/types/graphql';
 
 export class UserService extends DataSource {
-  createUser(input: UserInput): Promise<User> {
+  async signUp({ input }: MutationSignUpArgs): Promise<UserToken> {
     const user = new UserModel();
-    return getRepository(UserModel).save({ ...user, ...input });
+    const password = bcrypt.hashSync(input.password, bcrypt.genSaltSync(8));
+
+    const { id } = await getRepository(UserModel).save({ ...user, ...input, password });
+    const token = jwt.sign({ id }, utils.env.get('JWT_SECRET'), { expiresIn: '30d' });
+
+    return { token };
   }
 
-  async updateUser(id: string, input: UserInput): Promise<User> {
-    const user = await getRepository(UserModel).findOne(id);
-    return getRepository(UserModel).save({ ...user, ...input });
-  }
+  async signIn({ input }: MutationSignInArgs): Promise<UserToken> {
+    const { id, password } = await getRepository(UserModel).findOne({ email: input.email });
 
-  user(id: string): Promise<User> {
-    return getRepository(UserModel).findOne(id);
-  }
+    const valid = bcrypt.compareSync(input.password, password);
+    const token = jwt.sign({ id }, utils.env.get('JWT_SECRET'), { expiresIn: '30d' });
 
-  users(): Promise<User[]> {
-    return getRepository(UserModel).find();
+    return { token: valid ? token : null };
   }
 }

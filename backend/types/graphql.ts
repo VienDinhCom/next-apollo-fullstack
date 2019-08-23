@@ -16,8 +16,8 @@ export type Mutation = {
   _empty?: Maybe<Scalars['String']>,
   createPost?: Maybe<Post>,
   updatePost?: Maybe<Post>,
-  createUser?: Maybe<User>,
-  updateUser?: Maybe<User>,
+  signUp?: Maybe<UserToken>,
+  signIn?: Maybe<UserToken>,
 };
 
 
@@ -32,13 +32,12 @@ export type MutationUpdatePostArgs = {
 };
 
 
-export type MutationCreateUserArgs = {
+export type MutationSignUpArgs = {
   input?: Maybe<UserInput>
 };
 
 
-export type MutationUpdateUserArgs = {
-  id: Scalars['ID'],
+export type MutationSignInArgs = {
   input?: Maybe<UserInput>
 };
 
@@ -61,8 +60,6 @@ export type Query = {
   post?: Maybe<Post>,
   posts?: Maybe<Array<Maybe<Post>>>,
   _empty?: Maybe<Scalars['String']>,
-  user?: Maybe<User>,
-  users?: Maybe<Array<Maybe<User>>>,
 };
 
 
@@ -70,20 +67,21 @@ export type QueryPostArgs = {
   id: Scalars['ID']
 };
 
-
-export type QueryUserArgs = {
-  id: Scalars['ID']
-};
-
 export type User = {
   __typename?: 'User',
   id: Scalars['ID'],
-  name?: Maybe<Scalars['String']>,
-  posts?: Maybe<Array<Maybe<Post>>>,
+  email?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
 };
 
 export type UserInput = {
-  name?: Maybe<Scalars['String']>,
+  email: Scalars['String'],
+  password: Scalars['String'],
+};
+
+export type UserToken = {
+  __typename?: 'UserToken',
+  token?: Maybe<Scalars['String']>,
 };
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
@@ -165,6 +163,7 @@ export type ResolversTypes = ResolversObject<{
   Mutation: ResolverTypeWrapper<{}>,
   PostInput: PostInput,
   UserInput: UserInput,
+  UserToken: ResolverTypeWrapper<UserToken>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 }>;
 
@@ -178,6 +177,7 @@ export type ResolversParentTypes = ResolversObject<{
   Mutation: {},
   PostInput: PostInput,
   UserInput: UserInput,
+  UserToken: UserToken,
   Boolean: Scalars['Boolean'],
 }>;
 
@@ -185,8 +185,8 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   createPost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, MutationCreatePostArgs>,
   updatePost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationUpdatePostArgs, 'id'>>,
-  createUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, MutationCreateUserArgs>,
-  updateUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'id'>>,
+  signUp?: Resolver<Maybe<ResolversTypes['UserToken']>, ParentType, ContextType, MutationSignUpArgs>,
+  signIn?: Resolver<Maybe<ResolversTypes['UserToken']>, ParentType, ContextType, MutationSignInArgs>,
 }>;
 
 export type PostResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = ResolversObject<{
@@ -200,14 +200,16 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
   post?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QueryPostArgs, 'id'>>,
   posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>,
-  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>,
 }>;
 
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  password?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+}>;
+
+export type UserTokenResolvers<ContextType = Context, ParentType extends ResolversParentTypes['UserToken'] = ResolversParentTypes['UserToken']> = ResolversObject<{
+  token?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
 }>;
 
 export type Resolvers<ContextType = Context> = ResolversObject<{
@@ -215,6 +217,7 @@ export type Resolvers<ContextType = Context> = ResolversObject<{
   Post?: PostResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   User?: UserResolvers<ContextType>,
+  UserToken?: UserTokenResolvers<ContextType>,
 }>;
 
 
