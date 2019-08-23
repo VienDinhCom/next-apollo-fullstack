@@ -1,20 +1,17 @@
 import jwt from 'jsonwebtoken';
+import * as env from './env.util';
 
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = env.get('JWT_SECRET');
 
-export function createToken(uid: string) {
+export function createToken(uid: string): string {
   return jwt.sign({ uid }, JWT_SECRET, { expiresIn: '30d' });
 }
 
-export function getUser(token: string) {
+export function getUserID(token: string): { id: string } {
   try {
-    if (token) {
-      const { uid }: any = jwt.verify(token, JWT_SECRET);
+    const { uid }: any = jwt.verify(token, JWT_SECRET);
 
-      return { uid };
-    }
-
-    return null;
+    return uid;
   } catch (error) {
     return null;
   }

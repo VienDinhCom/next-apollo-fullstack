@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { DataSource } from 'apollo-datasource';
 import { utils } from '~/backend/utils';
 import { getRepository } from 'typeorm';
+import { DataSource } from 'apollo-datasource';
 import { User as UserModel } from '~/backend/models';
 import { UserToken, MutationSignUpArgs, MutationSignInArgs } from '~/backend/types/graphql';
 
@@ -12,7 +12,7 @@ export class UserService extends DataSource {
     const password = bcrypt.hashSync(input.password, bcrypt.genSaltSync(8));
 
     const { id } = await getRepository(UserModel).save({ ...user, ...input, password });
-    const token = jwt.sign({ id }, utils.env.get('JWT_SECRET'), { expiresIn: '30d' });
+    const token = utils.auth.createToken(id);
 
     return { token };
   }
@@ -21,7 +21,7 @@ export class UserService extends DataSource {
     const { id, password } = await getRepository(UserModel).findOne({ email: input.email });
 
     const valid = bcrypt.compareSync(input.password, password);
-    const token = jwt.sign({ id }, utils.env.get('JWT_SECRET'), { expiresIn: '30d' });
+    const token = utils.auth.createToken(id);
 
     return { token: valid ? token : null };
   }

@@ -1,18 +1,20 @@
 import '~/backend/models';
+import { utils } from '~/backend/utils';
+import { dataSources } from './services';
 import { ApolloServer } from 'apollo-server-micro';
 import { typeDefs, resolvers } from '~/backend/schema';
-import { dataSources } from './services';
 
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources
-  // context: ({ req }) => {
-  //   const token = req.headers.authorization || '';
-  //   const user = utilities.auth.getUser(token);
+  dataSources,
+  playground: true,
+  context: ({ req }) => {
+    const token = req.headers.authorization;
+    const auid = utils.auth.getUserID(token || ''); // Active User ID
 
-  //   return { user };
-  // }
+    return { auid };
+  }
 });
 
 // https://blog.apollographql.com/modularizing-your-graphql-schema-code-d7f71d5ed5f2
