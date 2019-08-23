@@ -9,10 +9,8 @@
     "build": "next build",
     "start": "next start",
     "codegen": "graphql-codegen",
-    "eslint": "eslint src",
-    "eslint-fix": "eslint src --fix",
-    "stylelint": "stylelint 'frontend/**/*.{css,scss}'",
-    "stylelint-fix": "stylelint 'frontend/**/*.{css,scss}' --fix"
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "stylelint": "stylelint 'frontend/**/*.{css,scss}'"
   },
   "dependencies": {
     "apollo-datasource": "^0.6.1",

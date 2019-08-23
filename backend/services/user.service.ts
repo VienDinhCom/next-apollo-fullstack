@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { utils } from '~/backend/utils';
 import { getRepository } from 'typeorm';
 import { DataSource } from 'apollo-datasource';

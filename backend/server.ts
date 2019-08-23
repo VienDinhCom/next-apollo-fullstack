@@ -8,7 +8,6 @@ export const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources,
-  playground: true,
   context: ({ req }) => {
     const token = req.headers.authorization;
     const auid = utils.auth.getUserID(token || ''); // Active User ID
