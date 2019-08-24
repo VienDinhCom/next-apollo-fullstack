@@ -1,13 +1,12 @@
-import '~/backend/models';
 import { utils } from '~/backend/utils';
-import { dataSources } from './services';
 import { ApolloServer } from 'apollo-server-micro';
-import { typeDefs, resolvers } from '~/backend/schema';
+import { typeDefs, resolvers } from '~/backend/modules';
+
+utils.db.init();
 
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources,
   context: ({ req }) => {
     const token = req.headers.authorization;
     const auid = utils.auth.getUserID(token || ''); // Active User ID

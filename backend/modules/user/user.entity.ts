@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryColumn, Generated } from 'typeorm';
-import { User as UserType } from '~/backend/types/graphql';
+import { User } from '~/backend/types/graphql';
 
-@Entity()
-export class User implements UserType {
+@Entity('user')
+export class UserEntity implements User {
   @PrimaryColumn()
   @Generated('uuid')
   id: string;

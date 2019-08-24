@@ -7,9 +7,9 @@ export function get(variable: string) {
 }
 
 export function isDev() {
-  return get('NODE_ENV') !== 'production';
+  return !isProd();
 }
 
 export function isProd() {
-  return !isDev();
+  return get('NODE_ENV') === 'production';
 }

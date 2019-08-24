@@ -1,7 +1,7 @@
 ---
 overwrite: true
 schema:
-  "./backend/schema/**/*.ts":
+  "./backend/modules/**/*.ts":
     noRequire: true
 generates:
   backend/types/graphql.ts:
