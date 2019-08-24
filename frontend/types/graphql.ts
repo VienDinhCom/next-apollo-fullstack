@@ -11,8 +11,27 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation',
   _empty?: Maybe<Scalars['String']>,
+  createPost?: Maybe<Post>,
+  updatePost?: Maybe<Post>,
+  deletePost?: Maybe<Scalars['Boolean']>,
   signUp?: Maybe<UserToken>,
   signIn?: Maybe<UserToken>,
+};
+
+
+export type MutationCreatePostArgs = {
+  input?: Maybe<PostInput>
+};
+
+
+export type MutationUpdatePostArgs = {
+  id: Scalars['String'],
+  input?: Maybe<PostInput>
+};
+
+
+export type MutationDeletePostArgs = {
+  id: Scalars['String']
 };
 
 
@@ -25,16 +44,41 @@ export type MutationSignInArgs = {
   input?: Maybe<UserInput>
 };
 
+export type Post = {
+  __typename?: 'Post',
+  id: Scalars['ID'],
+  title?: Maybe<Scalars['String']>,
+  content?: Maybe<Scalars['String']>,
+  author?: Maybe<User>,
+};
+
+export type PostInput = {
+  title: Scalars['String'],
+  content: Scalars['String'],
+};
+
 export type Query = {
   __typename?: 'Query',
+  post?: Maybe<Post>,
+  posts?: Maybe<Array<Maybe<Post>>>,
   _empty?: Maybe<Scalars['String']>,
+};
+
+
+export type QueryPostArgs = {
+  id: Scalars['String']
+};
+
+
+export type QueryPostsArgs = {
+  offset?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
 };
 
 export type User = {
   __typename?: 'User',
   id: Scalars['ID'],
   email?: Maybe<Scalars['String']>,
-  password?: Maybe<Scalars['String']>,
 };
 
 export type UserInput = {

@@ -19,6 +19,8 @@ export const resolvers: Resolvers = {
       const { id } = await getRepository(UserEntity).save({ ...user, ...input, password });
       const token = utils.auth.createToken(id);
 
+      console.log(id);
+
       return { token };
     },
     signIn: async (parent, { input }, context, info) => {
