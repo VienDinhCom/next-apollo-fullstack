@@ -15,8 +15,8 @@ export const typeDef = gql`
 
   extend type Mutation {
     createPost(input: PostInput): Post
-    updatePost(id: String!, input: PostInput): Post
-    deletePost(id: String!): Boolean
+    updatePost(id: ID!, input: PostInput): Post
+    deletePost(id: ID!): Boolean
   }
 
   extend type Query {
