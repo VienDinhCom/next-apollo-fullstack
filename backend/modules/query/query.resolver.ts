@@ -1,9 +1,9 @@
-import { MutationResolvers } from '~/backend/types/graphql';
+import { QueryResolvers } from '~/backend/types/graphql';
 
 interface Resolvers {
-  Mutation: MutationResolvers;
+  Query: QueryResolvers;
 }
 
 export const resolvers: Resolvers = {
-  Mutation: {}
+  Query: {}
 };

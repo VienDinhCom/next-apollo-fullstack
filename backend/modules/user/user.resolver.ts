@@ -2,16 +2,14 @@ import bcrypt from 'bcrypt';
 import { utils } from '~/backend/utils';
 import { getRepository } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { UserResolvers, MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
+import { MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
 
 interface Resolvers {
-  User: UserResolvers;
   Mutation: MutationResolvers;
   Query: QueryResolvers;
 }
 
 export const resolvers: Resolvers = {
-  User: {},
   Mutation: {
     signUp: async (parent, { input }, context, info) => {
       const password = bcrypt.hashSync(input.password, bcrypt.genSaltSync(8));
