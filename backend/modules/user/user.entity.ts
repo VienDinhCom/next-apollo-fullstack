@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryColumn, Generated, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryColumn, Generated } from 'typeorm';
 import { User } from '~/backend/types/graphql';
-import { PostEntity } from '~/backend/modules/entities';
 
 @Entity('user')
 export class UserEntity implements User {
@@ -13,7 +12,4 @@ export class UserEntity implements User {
 
   @Column()
   password: string;
-
-  // @OneToMany(type => PostEntity, post => post.author)
-  // posts: PostEntity[];
 }
