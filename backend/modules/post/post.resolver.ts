@@ -23,6 +23,15 @@ export const resolvers: Resolvers = {
 
       const updatedPost = Object.assign(post, input);
       return getRepository(PostEntity).save(updatedPost);
+    },
+    deletePost: async (parent, { id }, { user }, info) => {
+      const post = await getRepository(PostEntity).findOne({ id }, { relations: ['author'] });
+
+      if (!user || user.id !== post.authorId) throw new Error("You don't have permission to delete this post.");
+
+      const { affected } = await getRepository(PostEntity).delete(post.id);
+
+      return affected > 0;
     }
   },
   Query: {
