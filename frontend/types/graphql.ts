@@ -14,8 +14,8 @@ export type Mutation = {
   createPost?: Maybe<Post>,
   updatePost?: Maybe<Post>,
   deletePost?: Maybe<Scalars['Boolean']>,
-  signUp?: Maybe<User>,
-  signIn?: Maybe<User>,
+  signUp?: Maybe<Scalars['String']>,
+  signIn?: Maybe<Scalars['String']>,
 };
 
 
@@ -85,7 +85,6 @@ export type User = {
   __typename?: 'User',
   id: Scalars['ID'],
   email?: Maybe<Scalars['String']>,
-  token?: Maybe<Scalars['String']>,
   posts?: Maybe<Array<Maybe<Post>>>,
 };
 

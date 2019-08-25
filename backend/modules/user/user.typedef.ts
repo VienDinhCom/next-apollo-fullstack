@@ -4,7 +4,6 @@ export const typeDef = gql`
   type User {
     id: ID!
     email: String
-    token: String
     posts(take: Int, skip: Int): [Post]
   }
 
@@ -14,8 +13,8 @@ export const typeDef = gql`
   }
 
   extend type Mutation {
-    signUp(input: UserInput): User
-    signIn(input: UserInput): User
+    signUp(input: UserInput): String
+    signIn(input: UserInput): String
   }
 
   extend type Query {

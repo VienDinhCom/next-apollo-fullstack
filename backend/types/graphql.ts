@@ -17,8 +17,8 @@ export type Mutation = {
   createPost?: Maybe<Post>,
   updatePost?: Maybe<Post>,
   deletePost?: Maybe<Scalars['Boolean']>,
-  signUp?: Maybe<User>,
-  signIn?: Maybe<User>,
+  signUp?: Maybe<Scalars['String']>,
+  signIn?: Maybe<Scalars['String']>,
 };
 
 
@@ -88,7 +88,6 @@ export type User = {
   __typename?: 'User',
   id: Scalars['ID'],
   email?: Maybe<Scalars['String']>,
-  token?: Maybe<Scalars['String']>,
   posts?: Maybe<Array<Maybe<Post>>>,
 };
 
@@ -205,8 +204,8 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   createPost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, MutationCreatePostArgs>,
   updatePost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationUpdatePostArgs, 'id'>>,
   deletePost?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeletePostArgs, 'id'>>,
-  signUp?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, MutationSignUpArgs>,
-  signIn?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, MutationSignInArgs>,
+  signUp?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, MutationSignUpArgs>,
+  signIn?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, MutationSignInArgs>,
 }>;
 
 export type PostResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = ResolversObject<{
@@ -226,7 +225,6 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  token?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType, UserPostsArgs>,
 }>;
 

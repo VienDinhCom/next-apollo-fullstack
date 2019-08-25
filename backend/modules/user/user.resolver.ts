@@ -22,16 +22,15 @@ export const resolvers: Resolvers = {
       const password = bcrypt.hashSync(input.password, bcrypt.genSaltSync(8));
       const user = Object.assign(new UserEntity(), input, { password });
       const { id } = await getRepository(UserEntity).save(user);
-      const token = utils.auth.createToken(id);
 
-      return { ...user, id, token };
+      return utils.auth.createToken(id);
     },
     signIn: async (parent, { input }, context, info) => {
       const user = await getRepository(UserEntity).findOne({ email: input.email });
       const valid = bcrypt.compareSync(input.password, user.password);
       const token = utils.auth.createToken(user.id);
 
-      return { ...user, token: valid ? token : null };
+      return valid ? token : null;
     }
   },
   Query: {
