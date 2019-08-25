@@ -5,5 +5,7 @@ interface Resolvers {
 }
 
 export const resolvers: Resolvers = {
-  Mutation: {}
+  Mutation: {
+    _empty: null
+  }
 };
