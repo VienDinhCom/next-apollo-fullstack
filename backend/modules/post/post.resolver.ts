@@ -1,5 +1,4 @@
 import { getRepository } from 'typeorm';
-import { AuthenticationError } from 'apollo-server-micro';
 import { PostEntity } from '~/backend/modules/entities';
 import { MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
 
