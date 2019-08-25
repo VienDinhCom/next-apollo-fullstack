@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, Generated, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryColumn, Generated, ManyToOne, RelationId } from 'typeorm';
 import { Post } from '~/backend/types/graphql';
 import { UserEntity } from '../user/user.entity';
 
@@ -16,4 +16,7 @@ export class PostEntity implements Post {
 
   @ManyToOne(type => UserEntity, { nullable: false })
   author: UserEntity;
+
+  @RelationId((post: Post) => post.author)
+  authorId: string;
 }

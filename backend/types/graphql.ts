@@ -57,7 +57,7 @@ export type Post = {
 
 export type PostInput = {
   title: Scalars['String'],
-  content: Scalars['String'],
+  content?: Maybe<Scalars['String']>,
 };
 
 export type Query = {

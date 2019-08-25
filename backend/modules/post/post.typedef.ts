@@ -10,7 +10,7 @@ export const typeDef = gql`
 
   input PostInput {
     title: String!
-    content: String!
+    content: String
   }
 
   extend type Mutation {

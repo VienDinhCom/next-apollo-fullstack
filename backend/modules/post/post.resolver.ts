@@ -11,10 +11,18 @@ interface Resolvers {
 export const resolvers: Resolvers = {
   Mutation: {
     createPost: async (parent, { input }, { user }, info) => {
-      if (!user) throw new AuthenticationError("You don't have permission to create posts.");
+      if (!user) throw new Error("You don't have permission to create posts.");
 
       const post = Object.assign(new PostEntity(), input, { author: user });
       return getRepository(PostEntity).save(post);
+    },
+    updatePost: async (parent, { id, input }, { user }, info) => {
+      const post = await getRepository(PostEntity).findOne({ id }, { relations: ['author'] });
+
+      if (!user || user.id !== post.authorId) throw new Error("You don't have permission to update this post.");
+
+      const updatedPost = Object.assign(post, input);
+      return getRepository(PostEntity).save(updatedPost);
     }
   },
   Query: {
