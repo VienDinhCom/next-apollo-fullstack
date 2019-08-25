@@ -6,6 +6,6 @@ interface Resolvers {
 
 export const resolvers: Resolvers = {
   Mutation: {
-    _empty: null
+    _empty: () => null
   }
 };

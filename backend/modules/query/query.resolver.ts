@@ -6,6 +6,6 @@ interface Resolvers {
 
 export const resolvers: Resolvers = {
   Query: {
-    _empty: null
+    _empty: () => null
   }
 };
