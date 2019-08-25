@@ -23,7 +23,7 @@ export const resolvers: Resolvers = {
       return getRepository(PostEntity).save(post);
     },
     updatePost: async (parent, { id, input }, { user }, info) => {
-      const post = await getRepository(PostEntity).findOne({ id }, { relations: ['author'] });
+      const post = await getRepository(PostEntity).findOne({ id });
 
       if (!user || user.id !== post.authorId) throw new Error("You don't have permission to update this post.");
 
@@ -31,7 +31,7 @@ export const resolvers: Resolvers = {
       return getRepository(PostEntity).save(updatedPost);
     },
     deletePost: async (parent, { id }, { user }, info) => {
-      const post = await getRepository(PostEntity).findOne({ id }, { relations: ['author'] });
+      const post = await getRepository(PostEntity).findOne({ id });
 
       if (!user || user.id !== post.authorId) throw new Error("You don't have permission to delete this post.");
 
