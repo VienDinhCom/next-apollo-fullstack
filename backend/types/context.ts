@@ -1,3 +1,5 @@
+import { UserEntity } from '../modules/entities';
+
 export interface Context {
-  auid: string;
+  user: UserEntity;
 }

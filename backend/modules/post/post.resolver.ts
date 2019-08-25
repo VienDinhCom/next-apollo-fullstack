@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
-import { PostEntity, UserEntity } from '~/backend/modules/entities';
+import { AuthenticationError } from 'apollo-server-micro';
+import { PostEntity } from '~/backend/modules/entities';
 import { PostResolvers, MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
 
 interface Resolvers {
@@ -11,12 +12,11 @@ interface Resolvers {
 export const resolvers: Resolvers = {
   Post: {},
   Mutation: {
-    createPost: async (parent, { input }, { auid }, info) => {
-      const post = new PostEntity();
+    createPost: async (parent, { input }, { user }, info) => {
+      if (!user) throw new AuthenticationError("You don't have permission to create posts.");
 
-      const author = await getRepository(UserEntity).findOne({ id: auid });
-
-      return getRepository(PostEntity).save({ ...post, ...input, author });
+      const post = Object.assign(new PostEntity(), input, { author: user });
+      return getRepository(PostEntity).save(post);
     }
   },
   Query: {}

@@ -14,12 +14,10 @@ export const resolvers: Resolvers = {
   User: {},
   Mutation: {
     signUp: async (parent, { input }, context, info) => {
-      const user = new UserEntity();
       const password = bcrypt.hashSync(input.password, bcrypt.genSaltSync(8));
-      const { id } = await getRepository(UserEntity).save({ ...user, ...input, password });
+      const user = Object.assign(new UserEntity(), input, { password });
+      const { id } = await getRepository(UserEntity).save(user);
       const token = utils.auth.createToken(id);
-
-      console.log(id);
 
       return { token };
     },

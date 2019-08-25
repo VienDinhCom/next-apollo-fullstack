@@ -7,11 +7,11 @@ utils.db.init();
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => {
+  context: async ({ req }) => {
     const token = req.headers.authorization;
-    const auid = utils.auth.getUserID(token || ''); // Active User ID
+    const user = await utils.auth.getUser(token);
 
-    return { auid };
+    return { user };
   }
 });
 

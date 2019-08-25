@@ -1,17 +1,20 @@
 import jwt from 'jsonwebtoken';
 import * as env from './env.util';
+import { getRepository } from 'typeorm';
+import { UserEntity } from '~/backend/modules/entities';
 
 const JWT_SECRET = env.get('JWT_SECRET');
 
-export function createToken(uid: string): string {
-  return jwt.sign({ uid }, JWT_SECRET, { expiresIn: '30d' });
+export function createToken(id: string): string {
+  return jwt.sign({ id }, JWT_SECRET, { expiresIn: '30d' });
 }
 
-export function getUserID(token: string): { id: string } {
+export async function getUser(token: string): Promise<UserEntity> {
   try {
-    const { uid }: any = jwt.verify(token, JWT_SECRET);
+    const { id }: any = jwt.verify(token || '', JWT_SECRET);
+    const user = await getRepository(UserEntity).findOne({ id });
 
-    return uid;
+    return user || null;
   } catch (error) {
     return null;
   }
