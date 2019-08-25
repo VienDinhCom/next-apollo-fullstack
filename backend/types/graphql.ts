@@ -69,13 +69,13 @@ export type Query = {
 
 
 export type QueryPostArgs = {
-  id: Scalars['String']
+  id: Scalars['ID']
 };
 
 
 export type QueryPostsArgs = {
-  offset?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>
 };
 
 export type User = {
@@ -166,9 +166,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>,
-  String: ResolverTypeWrapper<Scalars['String']>,
-  Post: ResolverTypeWrapper<Post>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
+  Post: ResolverTypeWrapper<Post>,
+  String: ResolverTypeWrapper<Scalars['String']>,
   User: ResolverTypeWrapper<User>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
   Mutation: ResolverTypeWrapper<{}>,
@@ -181,9 +181,9 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Query: {},
-  String: Scalars['String'],
-  Post: Post,
   ID: Scalars['ID'],
+  Post: Post,
+  String: Scalars['String'],
   User: User,
   Int: Scalars['Int'],
   Mutation: {},

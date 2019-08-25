@@ -19,5 +19,14 @@ export const resolvers: Resolvers = {
       return getRepository(PostEntity).save(post);
     }
   },
-  Query: {}
+  Query: {
+    post: async (parent, { id }, context, info) => {
+      return getRepository(PostEntity).findOne({ where: { id }, relations: ['author'] });
+    },
+    posts: async (parent, { take, skip }, context, info) => {
+      const pagination = { take: take || 10, skip: skip || 0 };
+
+      return getRepository(PostEntity).find({ relations: ['author'], ...pagination });
+    }
+  }
 };

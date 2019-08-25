@@ -66,13 +66,13 @@ export type Query = {
 
 
 export type QueryPostArgs = {
-  id: Scalars['String']
+  id: Scalars['ID']
 };
 
 
 export type QueryPostsArgs = {
-  offset?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>
 };
 
 export type User = {

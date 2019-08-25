@@ -20,7 +20,7 @@ export const typeDef = gql`
   }
 
   extend type Query {
-    post(id: String!): Post
-    posts(offset: Int, limit: Int): [Post]
+    post(id: ID!): Post
+    posts(take: Int, skip: Int): [Post]
   }
 `;
