@@ -1,13 +1,20 @@
 import { getRepository } from 'typeorm';
-import { PostEntity } from '~/backend/modules/entities';
-import { MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
+import { PostEntity, UserEntity } from '~/backend/modules/entities';
+import { PostResolvers, MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
 
 interface Resolvers {
+  Post: PostResolvers;
   Mutation: MutationResolvers;
   Query: QueryResolvers;
 }
 
 export const resolvers: Resolvers = {
+  Post: {
+    author: async (post, args, context, info) => {
+      const { authorId }: any = post;
+      return getRepository(UserEntity).findOne({ id: authorId });
+    }
+  },
   Mutation: {
     createPost: async (parent, { input }, { user }, info) => {
       if (!user) throw new Error("You don't have permission to create posts.");
@@ -35,12 +42,12 @@ export const resolvers: Resolvers = {
   },
   Query: {
     post: async (parent, { id }, context, info) => {
-      return getRepository(PostEntity).findOne({ where: { id }, relations: ['author'] });
+      return getRepository(PostEntity).findOne({ id });
     },
     posts: async (parent, { take, skip }, context, info) => {
       const pagination = { take: take || 10, skip: skip || 0 };
 
-      return getRepository(PostEntity).find({ relations: ['author'], ...pagination });
+      return getRepository(PostEntity).find({ ...pagination });
     }
   }
 };
