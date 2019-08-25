@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryColumn, Generated } from 'typeorm';
-import { IsEmail } from 'class-validator';
 import { User } from '~/backend/types/graphql';
 
 @Entity('user')
@@ -9,8 +8,7 @@ export class UserEntity implements User {
   id: string;
 
   @Column({ unique: true })
-  @IsEmail()
-  email: string;
+  username: string;
 
   @Column()
   password: string;

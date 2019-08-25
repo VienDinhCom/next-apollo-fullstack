@@ -18,15 +18,15 @@ export const resolvers: Resolvers = {
     }
   },
   Mutation: {
-    signUp: async (parent, { input }, context, info) => {
+    signUpToGetToken: async (parent, { input }, context, info) => {
       const password = bcrypt.hashSync(input.password, bcrypt.genSaltSync(8));
       const user = Object.assign(new UserEntity(), input, { password });
       const { id } = await getRepository(UserEntity).save(user);
 
       return utils.auth.createToken(id);
     },
-    signIn: async (parent, { input }, context, info) => {
-      const user = await getRepository(UserEntity).findOne({ email: input.email });
+    signInToGetToken: async (parent, { input }, context, info) => {
+      const user = await getRepository(UserEntity).findOne({ username: input.username });
       const valid = bcrypt.compareSync(input.password, user.password);
       const token = utils.auth.createToken(user.id);
 

@@ -14,8 +14,8 @@ export type Mutation = {
   createPost?: Maybe<Post>,
   updatePost?: Maybe<Post>,
   deletePost?: Maybe<Scalars['Boolean']>,
-  signUp?: Maybe<Scalars['String']>,
-  signIn?: Maybe<Scalars['String']>,
+  signUpToGetToken?: Maybe<Scalars['String']>,
+  signInToGetToken?: Maybe<Scalars['String']>,
 };
 
 
@@ -35,12 +35,12 @@ export type MutationDeletePostArgs = {
 };
 
 
-export type MutationSignUpArgs = {
+export type MutationSignUpToGetTokenArgs = {
   input?: Maybe<UserInput>
 };
 
 
-export type MutationSignInArgs = {
+export type MutationSignInToGetTokenArgs = {
   input?: Maybe<UserInput>
 };
 
@@ -84,7 +84,7 @@ export type QueryUserArgs = {
 export type User = {
   __typename?: 'User',
   id: Scalars['ID'],
-  email?: Maybe<Scalars['String']>,
+  username?: Maybe<Scalars['String']>,
   posts?: Maybe<Array<Maybe<Post>>>,
 };
 
@@ -95,6 +95,6 @@ export type UserPostsArgs = {
 };
 
 export type UserInput = {
-  email: Scalars['String'],
+  username: Scalars['String'],
   password: Scalars['String'],
 };
