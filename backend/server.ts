@@ -1,4 +1,5 @@
 import { utils } from '~/backend/utils';
+import { dataSources } from '~/backend/services';
 import { ApolloServer } from 'apollo-server-micro';
 import { typeDefs, resolvers } from '~/backend/modules';
 
@@ -7,6 +8,7 @@ utils.db.init();
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
+  dataSources,
   context: async ({ req }) => {
     const token = req.headers.authorization;
     const user = await utils.auth.getUser(token);

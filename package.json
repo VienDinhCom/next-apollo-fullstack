@@ -13,6 +13,7 @@
     "stylelint": "stylelint 'frontend/**/*.{css,scss}'"
   },
   "dependencies": {
+    "apollo-datasource": "^0.6.1",
     "apollo-modulizer": "^0.1.1",
     "apollo-server-micro": "^2.8.1",
     "bcrypt": "^3.0.6",

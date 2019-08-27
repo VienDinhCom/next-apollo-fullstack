@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import * as env from './env.util';
 import { createConnection, getConnection, ConnectionOptions } from 'typeorm';
-import { entities } from '~/backend/modules/entities';
+import { entities } from '~/backend/services/db.service';
 
 const options: ConnectionOptions = {
   name: 'default',

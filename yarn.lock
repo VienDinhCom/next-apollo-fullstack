@@ -1682,7 +1682,7 @@ apollo-cache-control@0.8.1:
     apollo-server-env "2.4.1"
     graphql-extensions "0.8.1"
 
-apollo-datasource@0.6.1:
+apollo-datasource@0.6.1, apollo-datasource@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/apollo-datasource/-/apollo-datasource-0.6.1.tgz#697870f564da90bee53fa30d07875cb46c4d6b06"
   integrity sha512-oy7c+9Up8PSZwJ1qTK9Idh1acDpIocvw+C0zcHg14ycvNz7qWHSwLUSaAjuQMd9SYFzB3sxfyEhyfyhIogT2+Q==
