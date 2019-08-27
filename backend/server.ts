@@ -3,8 +3,6 @@ import { dataSources } from '~/backend/services';
 import { ApolloServer } from 'apollo-server-micro';
 import { typeDefs, resolvers } from '~/backend/modules';
 
-utils.db.init();
-
 export const server = new ApolloServer({
   typeDefs,
   resolvers,

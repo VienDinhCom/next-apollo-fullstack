@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import * as env from './env.util';
 import { createConnection, getConnection, ConnectionOptions } from 'typeorm';
-import { entities } from '~/backend/services/db.service';
 
 const options: ConnectionOptions = {
   name: 'default',
@@ -11,20 +10,20 @@ const options: ConnectionOptions = {
   username: env.get('DB_USERNAME'),
   password: env.get('DB_PASSWORD'),
   database: env.get('DB_DATABASE'),
-  entities: entities,
+  entities: [],
   synchronize: true,
   logging: false
 };
 
-export async function init() {
+export async function init(entities: any[]) {
   try {
     const connection = await getConnection(options.name);
     await connection.close();
 
-    await createConnection(options);
+    await createConnection({ ...options, entities });
   } catch (error) {
     try {
-      await createConnection(options);
+      await createConnection({ ...options, entities });
     } catch (error) {
       console.log(`TypeORM Error: ${error.message}`);
     }
