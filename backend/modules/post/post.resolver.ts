@@ -1,39 +1,37 @@
 import { getRepository } from 'typeorm';
+import { Resolvers } from '~/backend/types/graphql';
 import { PostEntity, UserEntity } from '~/backend/modules/entities';
-import { PostResolvers, MutationResolvers, QueryResolvers } from '~/backend/types/graphql';
-
-interface Resolvers {
-  Post: PostResolvers;
-  Mutation: MutationResolvers;
-  Query: QueryResolvers;
-}
 
 export const resolvers: Resolvers = {
   Post: {
-    author: async (post, args, context, info) => {
-      const { authorId }: any = post;
+    author: async parent => {
+      const { authorId }: any = parent;
       return getRepository(UserEntity).findOne({ id: authorId });
     }
   },
   Mutation: {
-    createPost: async (parent, { input }, { user }, info) => {
-      if (!user) throw new Error("You don't have permission to create posts.");
+    createPost: async (parent, args, context) => {
+      if (!context.user) throw new Error("You don't have permission to create posts.");
 
-      const post = Object.assign(new PostEntity(), input, { author: user });
+      const post = Object.assign(new PostEntity(), args.input, { author: context.user });
       return getRepository(PostEntity).save(post);
     },
-    updatePost: async (parent, { id, input }, { user }, info) => {
-      const post = await getRepository(PostEntity).findOne({ id });
+    updatePost: async (parent, args, context) => {
+      const post = await getRepository(PostEntity).findOne({ id: args.id });
 
-      if (!user || user.id !== post.authorId) throw new Error("You don't have permission to update this post.");
+      if (!context.user || context.user.id !== post.authorId) {
+        throw new Error("You don't have permission to update this post.");
+      }
 
-      const updatedPost = Object.assign(post, input);
+      const updatedPost = Object.assign(post, args.input);
       return getRepository(PostEntity).save(updatedPost);
     },
-    deletePost: async (parent, { id }, { user }, info) => {
-      const post = await getRepository(PostEntity).findOne({ id });
+    deletePost: async (parent, args, context) => {
+      const post = await getRepository(PostEntity).findOne({ id: args.id });
 
-      if (!user || user.id !== post.authorId) throw new Error("You don't have permission to delete this post.");
+      if (!context.user || context.user.id !== post.authorId) {
+        throw new Error("You don't have permission to delete this post.");
+      }
 
       const { affected } = await getRepository(PostEntity).delete(post.id);
 
@@ -41,11 +39,11 @@ export const resolvers: Resolvers = {
     }
   },
   Query: {
-    post: async (parent, { id }, context, info) => {
-      return getRepository(PostEntity).findOne({ id });
+    post: async (parent, args) => {
+      return getRepository(PostEntity).findOne({ id: args.id });
     },
-    posts: async (parent, { take, skip }, context, info) => {
-      const pagination = { take: take || 10, skip: skip || 0 };
+    posts: async (parent, args) => {
+      const pagination = { take: args.take || 10, skip: args.skip || 0 };
 
       return getRepository(PostEntity).find({ ...pagination });
     }
