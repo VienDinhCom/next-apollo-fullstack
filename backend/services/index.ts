@@ -1,9 +1,9 @@
-import { DatabaseService } from './db.service';
+import { DatabaseService } from './database.service';
 
 export interface DataSources {
-  db: DatabaseService;
+  database: DatabaseService;
 }
 
 export const dataSources = () => ({
-  db: new DatabaseService()
+  database: new DatabaseService()
 });

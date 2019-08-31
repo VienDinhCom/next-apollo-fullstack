@@ -10,10 +10,10 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation',
+  _empty?: Maybe<Scalars['String']>,
   createPost?: Maybe<Post>,
   updatePost?: Maybe<Post>,
   deletePost?: Maybe<Scalars['Boolean']>,
-  _empty?: Maybe<Scalars['String']>,
   signUpToGetToken?: Maybe<Scalars['String']>,
   signInToGetToken?: Maybe<Scalars['String']>,
 };

@@ -8,13 +8,19 @@ import { PostEntity } from '~/backend/modules/post/post.entity';
 utils.db.init([UserEntity, PostEntity]);
 
 export class DatabaseService extends DataSource {
-  UserEntity = UserEntity;
-  getUserRepository() {
+  newUser() {
+    return new UserEntity();
+  }
+
+  getUserRepo() {
     return getRepository(UserEntity);
   }
 
-  PostEntity = PostEntity;
-  getPostRepository() {
+  newPost() {
+    return new PostEntity();
+  }
+
+  getPostRepo() {
     return getRepository(PostEntity);
   }
 }

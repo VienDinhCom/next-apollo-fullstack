@@ -1737,10 +1737,10 @@ apollo-link@^1.2.3:
     tslib "^1.9.3"
     zen-observable-ts "^0.8.19"
 
-apollo-modulizer@^0.1.1:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/apollo-modulizer/-/apollo-modulizer-0.1.2.tgz#b58ea941750fe5b32bd79b68d90526cbf1db8212"
-  integrity sha512-ZJ3jgD74KlE1RsuZF3oK3mHNP4xgVqqnScYNDt6hV4MEm4KpkTANkmOj20dEPiMOzgaaL4bukqkOxoZsQVE9LQ==
+apollo-modulizer@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/apollo-modulizer/-/apollo-modulizer-0.2.3.tgz#72e7a5fe1cd2f035936f22a1a6ce411c79e46ebe"
+  integrity sha512-VXPxgSs2p5mEU4rd68MK5FtGy59QlPLt3mqYbNCjVAH50z4Mz7mUMUjhqNfuWMfJd0ge+1nwu0XNKLQUZ5deZg==
   dependencies:
     lodash "^4.17.15"
 
