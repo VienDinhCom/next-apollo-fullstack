@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn, Generated } from 'typeorm';
-import { User } from '~/backend/types/graphql';
+import { User } from '~/backend/types/graphql.type';
 
 @Entity('user')
 export class UserEntity implements User {

@@ -4,14 +4,14 @@ schema:
   "./backend/modules/**/*.ts":
     noRequire: true
 generates:
-  backend/types/graphql.ts:
+  backend/types/graphql.type.ts:
     config:
-      contextType: "./context#Context"
+      contextType: "./context.type#Context"
       useIndexSignature: true
     plugins:
     - typescript
     - typescript-resolvers
-  frontend/types/graphql.ts:
+  frontend/types/graphql.type.ts:
     plugins:
     - typescript
     - typescript-operations

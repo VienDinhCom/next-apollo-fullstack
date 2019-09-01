@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn, Generated, ManyToOne, RelationId } from 'typeorm';
-import { Post } from '~/backend/types/graphql';
+import { Post } from '~/backend/types/graphql.type';
 import { UserEntity } from '../user/user.entity';
 
 @Entity('post')

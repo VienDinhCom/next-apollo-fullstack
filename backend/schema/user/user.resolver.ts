@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { utils } from '~/backend/utils';
-import { Resolvers } from '~/backend/types/graphql';
+import { Resolvers } from '~/backend/types/graphql.type';
 
 export const resolvers: Resolvers = {
   User: {
