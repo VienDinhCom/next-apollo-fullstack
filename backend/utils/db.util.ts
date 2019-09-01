@@ -15,7 +15,7 @@ const options: ConnectionOptions = {
   logging: false
 };
 
-export async function init(entities: any[]) {
+export async function connect(entities: any[]) {
   try {
     const connection = await getConnection(options.name);
     await connection.close();

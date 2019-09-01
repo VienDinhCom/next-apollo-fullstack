@@ -5,7 +5,7 @@ import { DataSource } from 'apollo-datasource';
 import { UserEntity } from '~/backend/schema/user/user.entity';
 import { PostEntity } from '~/backend/schema/post/post.entity';
 
-utils.db.init([UserEntity, PostEntity]);
+utils.db.connect([UserEntity, PostEntity]);
 
 export class DatabaseService extends DataSource {
   newUser() {
