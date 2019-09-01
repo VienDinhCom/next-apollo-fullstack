@@ -1,5 +1,5 @@
 .next
 node_modules
 
-backend/types/graphql.type.ts
+backend/types/schema.type.ts
 frontend/types/graphql.type.ts

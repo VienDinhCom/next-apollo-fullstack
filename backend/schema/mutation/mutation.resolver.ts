@@ -1,4 +1,4 @@
-import { Resolvers } from '~/backend/types/graphql.type';
+import { Resolvers } from '~/backend/types/schema.type';
 
 export const resolvers: Resolvers = {
   Mutation: {
