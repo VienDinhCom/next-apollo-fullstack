@@ -2,8 +2,8 @@ import { utils } from '~/backend/utils';
 import { getRepository } from 'typeorm';
 import { DataSource } from 'apollo-datasource';
 
-import { UserEntity } from '~/backend/modules/user/user.entity';
-import { PostEntity } from '~/backend/modules/post/post.entity';
+import { UserEntity } from '~/backend/schema/user/user.entity';
+import { PostEntity } from '~/backend/schema/post/post.entity';
 
 utils.db.init([UserEntity, PostEntity]);
 

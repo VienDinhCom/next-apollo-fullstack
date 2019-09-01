@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import * as env from './env.util';
 import { getRepository } from 'typeorm';
-import { UserEntity } from '~/backend/modules/user/user.entity';
+import { UserEntity } from '~/backend/schema/user/user.entity';
 
 const JWT_SECRET = env.get('JWT_SECRET');
 
