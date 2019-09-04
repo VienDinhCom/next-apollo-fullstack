@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryColumn, Generated } from 'typeorm';
 import { IsEmail } from 'class-validator';
+import { Entity, Column, PrimaryColumn, Generated } from 'typeorm';
 import { User } from '~/backend/types/schema.type';
 
 @Entity('user')
