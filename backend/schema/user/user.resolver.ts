@@ -13,8 +13,11 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     signUpToGetToken: async (parent, args, context) => {
-      const { getUserRepo, newUser } = context.dataSources.database;
+      if (args.input.password.length < 6) throw new Error('Password must be longer than 6 characters.');
+
       const password = bcrypt.hashSync(args.input.password, bcrypt.genSaltSync(8));
+
+      const { getUserRepo, newUser } = context.dataSources.database;
       const user = Object.assign(newUser(), args.input, { password });
 
       await utils.db.validate(user);
