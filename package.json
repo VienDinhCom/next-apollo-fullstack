@@ -28,7 +28,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.18"
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.6.1",
